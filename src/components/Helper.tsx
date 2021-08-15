@@ -50,3 +50,43 @@ export const addToDatabase = (objectType: string, newObject: object, toastFuncti
       sendNotification(toastFunction, false, "Could not add to database");
     });
 }
+
+export const updateDatabase = (objectType: string, updatedObject: object, toastFunction) => {
+  fetch(`/nexus/api/${objectType}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ updatedObject: updatedObject })
+  })
+  .then((response) => response.json())
+  .then((data) => {
+      sendNotification(toastFunction, data.success, data.message);
+  })
+  .catch((error) => {
+      console.error('Error:', error);
+      sendNotification(toastFunction, false, "Could not add to database");
+  });
+}
+
+export const deleteFromDatabase = (objectType: string, uid: string, toastFunction) => {
+  console.log('deleting', uid, 'from the db');
+  fetch(`/nexus/api/${objectType}?uid=` + uid, {
+    method: 'DELETE',
+  })
+  .then((response) => response.json())
+  .then((data) => {
+      sendNotification(toastFunction, data.success, data.message);
+  })
+  .catch((error) => {
+      console.error('Error:', error);
+      sendNotification(toastFunction, false, "Could not add to database");
+  });
+}
+
+export const fetchCompleteCollection = async (collection: string, setVariable) => {
+  const collectionResponse = await fetch(`/nexus/api/${collection}?amount=all`);
+  const collectionData = await collectionResponse.json();
+  if (collectionData) setVariable(collectionData)
+  else console.log('Could not fetch collection', collection)
+}
