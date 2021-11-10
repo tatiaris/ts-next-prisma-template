@@ -33,7 +33,7 @@ export const addItemToCard = (itemdId: string): void => {
   console.log(`adding item: ${itemdId} to the cart`);
 };
 
-export const addToDatabase = (objectType: string, newObject: object, toastFunction) => {
+export const addToDatabase = (objectType: string, newObject: any, toastFunction) => {
   fetch(`/api/${objectType}`, {
     method: 'POST',
     headers: {
@@ -47,11 +47,11 @@ export const addToDatabase = (objectType: string, newObject: object, toastFuncti
     })
     .catch((error) => {
       console.error('Error:', error);
-      sendNotification(toastFunction, false, "Could not add to database");
+      sendNotification(toastFunction, false, 'Could not add to database');
     });
-}
+};
 
-export const updateDatabase = (objectType: string, updatedObject: object, toastFunction) => {
+export const updateDatabase = (objectType: string, updatedObject: any, toastFunction) => {
   fetch(`/nexus/api/${objectType}`, {
     method: 'PUT',
     headers: {
@@ -59,34 +59,87 @@ export const updateDatabase = (objectType: string, updatedObject: object, toastF
     },
     body: JSON.stringify({ updatedObject: updatedObject })
   })
-  .then((response) => response.json())
-  .then((data) => {
+    .then((response) => response.json())
+    .then((data) => {
       sendNotification(toastFunction, data.success, data.message);
-  })
-  .catch((error) => {
+    })
+    .catch((error) => {
       console.error('Error:', error);
-      sendNotification(toastFunction, false, "Could not add to database");
-  });
-}
+      sendNotification(toastFunction, false, 'Could not add to database');
+    });
+};
 
 export const deleteFromDatabase = (objectType: string, uid: string, toastFunction) => {
   console.log('deleting', uid, 'from the db');
   fetch(`/nexus/api/${objectType}?uid=` + uid, {
-    method: 'DELETE',
+    method: 'DELETE'
   })
-  .then((response) => response.json())
-  .then((data) => {
+    .then((response) => response.json())
+    .then((data) => {
       sendNotification(toastFunction, data.success, data.message);
-  })
-  .catch((error) => {
+    })
+    .catch((error) => {
       console.error('Error:', error);
-      sendNotification(toastFunction, false, "Could not add to database");
-  });
-}
+      sendNotification(toastFunction, false, 'Could not add to database');
+    });
+};
 
 export const fetchCompleteCollection = async (collection: string, setVariable) => {
   const collectionResponse = await fetch(`/nexus/api/${collection}?amount=all`);
   const collectionData = await collectionResponse.json();
-  if (collectionData) setVariable(collectionData)
-  else console.log('Could not fetch collection', collection)
-}
+  if (collectionData) setVariable(collectionData);
+  else console.log('Could not fetch collection', collection);
+};
+
+export const getUserSession = async () => {
+  const res = await fetch(`http://localhost:3000/api/session`, { credentials: 'include' });
+  const sessionData = await res.json();
+  return sessionData.session;
+};
+
+export const login = (username, password, redirect = '/') => {
+  fetch(`/api/login`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ username, password })
+  })
+    .then(() => {
+      window.location.href = redirect;
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
+};
+
+export const logout = (redirect = '/') => {
+  fetch(`/api/logout`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+    .then(() => {
+      window.location.href = redirect;
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
+};
+
+export const signupUser = (newUser, password, redirect = '/') => {
+  fetch(`/api/signup`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ newUser, password })
+  })
+    .then(() => {
+      window.location.href = redirect;
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
+};
