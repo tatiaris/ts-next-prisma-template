@@ -1,7 +1,6 @@
 import React from 'react';
 import GooglePayButton from '@google-pay/button-react';
 import PropTypes from 'prop-types';
-import { useToasts } from '@geist-ui/react';
 
 /**
  * Google Pay Button component
@@ -10,14 +9,12 @@ interface GPayButtonInterface {
   totalPrice: number;
 }
 export const GPayButton: React.FC<GPayButtonInterface> = (props) => {
-  const [, setToast] = useToasts();
-
   return (
     <GooglePayButton
       buttonSizeMode="fill"
       environment={process.env.ENVIRONMENT == 'production' ? 'PRODUCTION' : 'TEST'}
-      onError={() => setToast({text: 'Payment did not go through.', type: 'error'})}
-      onCancel={() => setToast({text: 'Payment cancelled.', type: 'error'})}
+      onError={() => console.log({ text: 'Payment did not go through.', type: 'error' })}
+      onCancel={() => console.log({ text: 'Payment cancelled.', type: 'error' })}
       paymentRequest={{
         apiVersion: 2,
         apiVersionMinor: 0,

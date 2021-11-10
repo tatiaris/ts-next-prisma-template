@@ -1,6 +1,7 @@
 /* GENERAL SETTINGS START */
 body {
   background-color: white !important;
+  margin: 0;
 }
 h4, h5 {
   margin: 0 !important;
@@ -11,11 +12,43 @@ input[type=text] {
   line-height: 2.5;
   border: 0;
   border-radius: 5px;
-  box-shadow: inset 1px 1px 5px #bebebe, inset -1px -1px 5px #ffffff;
+  box-shadow: inset 0px 0px 5px #bebebe, inset 0px 0px 5px #ffffff;
   transition: 200ms;
 }
 input[type=text]:focus {
   border: 0 !important;
+}
+input[type=password] {
+  width: 100%;
+  padding: 0 10px;
+  line-height: 2.5;
+  border: 0;
+  border-radius: 5px;
+  box-shadow: inset 0px 0px 5px #bebebe, inset 0px 0px 5px #ffffff;
+  transition: 200ms;
+}
+input[type=password]:focus {
+  border: 0 !important;
+}
+button, .button {
+  background-color: white;
+  border: 0px;
+  border-radius: 5px;
+  padding: 10px 20px;
+  box-shadow: 0px 0px 5px #bebebe, 0px 0px 5px #ffffff;
+  font-family: 'Roboto';
+  font-size: 0.8rem;
+}
+button.flat, .button.flat {
+  box-shadow: none;
+  border: 1px solid #ccc;
+}
+a.button {
+  text-decoration: none;
+  color: black;
+}
+button:hover, a:hover {
+  cursor: pointer;
 }
 .input-container {
   width: 250px;
@@ -54,6 +87,14 @@ input[type=text]:focus {
 /* GENERAL SETTINGS END */
 
 /* Navbar css BEGIN */
+.navbar {
+  padding: 20px;
+  background-color: #333;
+  color: white;
+  justify-content: space-between;
+  display: flex;
+  align-items: center;
+}
 .navbar-row {
   padding: 10px 20px;
   -webkit-justify-content: space-between !important;
@@ -100,6 +141,9 @@ input[type=text]:focus {
 /* Navbar css END */
 
 /* Footer css BEGIN */
+.footer {
+  width: 100%;
+}
 .copyright-statement > a {
   color: #666666;
 }

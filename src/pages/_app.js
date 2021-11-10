@@ -1,20 +1,38 @@
-import { Provider } from 'next-auth/client';
-import { GeistProvider, CssBaseline } from '@geist-ui/react';
 import { Header } from '../components/common/Header';
 import { Navbar } from '../components/common/Navbar';
 import { Footer } from '../components/common/Footer';
 import '../style.css';
+import { useEffect, useState } from 'react';
+import { getUserSession } from '../components/Helper';
 
 export default function MyApp({ Component, pageProps }) {
-  return (
-    <GeistProvider>
-      <CssBaseline />
-      <Provider session={pageProps.session}>
+  const [userSession, setUserSession] = useState({
+    id: '0'
+  });
+
+  const fetchUserSession = async () => {
+    const session = await getUserSession();
+    setUserSession(session);
+  };
+
+  const endUserSession = () => {
+    setUserSession(null);
+  };
+
+  useEffect(() => {
+    fetchUserSession();
+  }, []);
+
+  if (userSession && userSession.id === '0') {
+    return <></>;
+  } else {
+    return (
+      <>
         <Header />
-        <Navbar />
-        <Component {...pageProps} />
+        <Navbar userSession={userSession} />
+        <Component {...pageProps} userSession={userSession} fetchUserSession={fetchUserSession} endUserSession={endUserSession} />
         <Footer />
-      </Provider>
-    </GeistProvider>
-  );
+      </>
+    );
+  }
 }
