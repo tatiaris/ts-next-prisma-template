@@ -15,9 +15,8 @@ export const Navbar: React.FC<NavbarProps> = (props): React.ReactElement => {
       <button onClick={() => logout()} className="flat">
         Logout
       </button>
-    )
-  }
-  else if (!props.userSession) {
+    );
+  } else if (!props.userSession) {
     sessionOptions = (
       <div>
         <button onClick={() => navigatePath('/login')} className="flat">
@@ -27,7 +26,7 @@ export const Navbar: React.FC<NavbarProps> = (props): React.ReactElement => {
           Signup
         </button>
       </div>
-    )
+    );
   }
   return (
     <div className="navbar">
@@ -36,9 +35,7 @@ export const Navbar: React.FC<NavbarProps> = (props): React.ReactElement => {
           {config.name}
         </a>
       </div>
-      <div>
-        {sessionOptions}
-      </div>
+      <div>{sessionOptions}</div>
     </div>
   );
 };

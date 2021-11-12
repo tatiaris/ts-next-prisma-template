@@ -14,8 +14,8 @@ const Signup = ({ userSession }): React.ReactNode => {
     signupUser({ email, fname, lname, username }, password);
   };
 
-  if (userSession && userSession['id'] === "0") return <></>;
-  if (userSession && userSession['id'] !== "0") navigatePath('/');
+  if (userSession && userSession['id'] === '0') return <></>;
+  if (userSession && userSession['id'] !== '0') navigatePath('/');
   else {
     return (
       <div style={{ padding: '15px' }}>
