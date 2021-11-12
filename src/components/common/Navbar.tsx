@@ -9,6 +9,26 @@ interface NavbarProps {
   userSession: any;
 }
 export const Navbar: React.FC<NavbarProps> = (props): React.ReactElement => {
+  let sessionOptions = <></>;
+  if (props.userSession && props.userSession['id'] !== '0') {
+    sessionOptions = (
+      <button onClick={() => logout()} className="flat">
+        Logout
+      </button>
+    )
+  }
+  else if (!props.userSession) {
+    sessionOptions = (
+      <div>
+        <button onClick={() => navigatePath('/login')} className="flat">
+          Login
+        </button>{' '}
+        <button onClick={() => navigatePath('/signup')} className="flat">
+          Signup
+        </button>
+      </div>
+    )
+  }
   return (
     <div className="navbar">
       <div>
@@ -17,20 +37,7 @@ export const Navbar: React.FC<NavbarProps> = (props): React.ReactElement => {
         </a>
       </div>
       <div>
-        {props.userSession ? (
-          <button onClick={() => logout()} className="flat">
-            Logout
-          </button>
-        ) : (
-          <div>
-            <button onClick={() => navigatePath('/login')} className="flat">
-              Login
-            </button>{' '}
-            <button onClick={() => navigatePath('/signup')} className="flat">
-              Signup
-            </button>
-          </div>
-        )}
+        {sessionOptions}
       </div>
     </div>
   );

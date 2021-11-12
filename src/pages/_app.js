@@ -23,16 +23,12 @@ export default function MyApp({ Component, pageProps }) {
     fetchUserSession();
   }, []);
 
-  if (userSession && userSession.id === '0') {
-    return <></>;
-  } else {
-    return (
-      <>
-        <Header />
-        <Navbar userSession={userSession} />
-        <Component {...pageProps} userSession={userSession} fetchUserSession={fetchUserSession} endUserSession={endUserSession} />
-        <Footer />
-      </>
-    );
-  }
+  return (
+    <>
+      <Header />
+      <Navbar userSession={userSession} />
+      <Component {...pageProps} userSession={userSession} fetchUserSession={fetchUserSession} endUserSession={endUserSession} />
+      <Footer />
+    </>
+  );
 }
