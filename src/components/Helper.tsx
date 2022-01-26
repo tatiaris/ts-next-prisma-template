@@ -97,7 +97,7 @@ export const getUserSession = async () => {
   return sessionData.session;
 };
 
-export const login = (username, password, redirect = '/') => {
+export const login = (username, password, setLoginFailed, redirect = '/') => {
   fetch(`/api/login`, {
     method: 'POST',
     headers: {
@@ -105,11 +105,19 @@ export const login = (username, password, redirect = '/') => {
     },
     body: JSON.stringify({ username, password })
   })
-    .then(() => {
-      window.location.href = redirect;
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.success) {
+        setLoginFailed(false);
+        navigatePath(redirect);
+      }
+      else {
+        setLoginFailed(true);
+      }
     })
     .catch((error) => {
       console.error('Error:', error);
+      setLoginFailed(true);
     });
 };
 
@@ -128,7 +136,7 @@ export const logout = (redirect = '/') => {
     });
 };
 
-export const signupUser = (newUser, password, redirect = '/') => {
+export const signupUser = (newUser, password, setSignupFailed, redirect = '/') => {
   fetch(`/api/signup`, {
     method: 'POST',
     headers: {
@@ -136,10 +144,18 @@ export const signupUser = (newUser, password, redirect = '/') => {
     },
     body: JSON.stringify({ newUser, password })
   })
-    .then(() => {
-      window.location.href = redirect;
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.success) {
+        setSignupFailed(false);
+        navigatePath(redirect);
+      }
+      else {
+        setSignupFailed(true);
+      }
     })
     .catch((error) => {
       console.error('Error:', error);
+      setSignupFailed(true);
     });
 };

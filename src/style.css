@@ -15,8 +15,8 @@ input[type=text] {
   box-shadow: inset 0px 0px 5px #bebebe, inset 0px 0px 5px #ffffff;
   transition: 200ms;
 }
-input[type=text]:focus {
-  border: 0 !important;
+input:focus {
+  outline: none;
 }
 input[type=password] {
   width: 100%;
@@ -26,9 +26,6 @@ input[type=password] {
   border-radius: 5px;
   box-shadow: inset 0px 0px 5px #bebebe, inset 0px 0px 5px #ffffff;
   transition: 200ms;
-}
-input[type=password]:focus {
-  border: 0 !important;
 }
 button, .button {
   background-color: white;
@@ -152,6 +149,14 @@ button:hover, a:hover {
 }
 /* Footer css END */
 
+/* Misc css START */
+.err-msg {
+  color: darkred;
+  font-size: small;
+  font-style: italic;
+}
+/* Misc css END */
+
 /* Shop css START */
 .item-card {
   display: flex;
@@ -238,21 +243,3 @@ button:hover, a:hover {
   }
 }
 /* MOBILE SCREEN SIZE END */
-
-/* PLAYING CARD START */
-.playing-card {
-  width: 300px;
-  height: 500px;
-  background-color: white;
-  border-radius: 10px;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12);
-  position: relative;
-}
-.playing-card .card-value {
-  position: absolute;
-  top: 5%;
-  left: 10%;
-  font-size: 250%;
-  font-weight: bold;
-}
-/* PLAYING CARD END */
