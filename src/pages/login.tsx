@@ -16,10 +16,12 @@ const Login = ({ userSession }): React.ReactNode => {
         <StringInput config={{ name: 'username', label: 'Username', type: 'text', placeholder: 'jdoe' }} updateFunc={setUsername} />
         <Spacer />
         <StringInput config={{ name: 'password', label: 'Password', type: 'password', placeholder: '' }} updateFunc={setPassword} />
-        {loginFailed && <div>
-          <Spacer value="4px" />
-          <span className='err-msg'>Login failed</span>
-        </div>}
+        {loginFailed && (
+          <div>
+            <Spacer value="4px" />
+            <span className="err-msg">Login failed</span>
+          </div>
+        )}
         <Spacer value="8px" />
         <button onClick={() => login(username, password, setLoginFailed)}>Submit</button>
       </div>

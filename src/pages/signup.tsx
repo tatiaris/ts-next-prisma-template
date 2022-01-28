@@ -29,10 +29,12 @@ const Signup = ({ userSession }): React.ReactNode => {
         <StringInput config={{ name: 'username', label: 'Username', type: 'text', placeholder: 'jdoe' }} updateFunc={setUsername} />
         <Spacer />
         <StringInput config={{ name: 'password', label: 'Password', type: 'password', placeholder: 'johndoe123' }} updateFunc={setPassword} />
-        {signupFailed && <div>
-          <Spacer />
-          <span className='err-msg'>Signup failed</span>
-        </div>}
+        {signupFailed && (
+          <div>
+            <Spacer />
+            <span className="err-msg">Signup failed</span>
+          </div>
+        )}
         <Spacer value="8px" />
         <button onClick={triggerSignupUser}>Submit</button>
       </div>

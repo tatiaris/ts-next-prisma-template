@@ -110,8 +110,7 @@ export const login = (username, password, setLoginFailed, redirect = '/') => {
       if (data.success) {
         setLoginFailed(false);
         navigatePath(redirect);
-      }
-      else {
+      } else {
         setLoginFailed(true);
       }
     })
@@ -149,8 +148,7 @@ export const signupUser = (newUser, password, setSignupFailed, redirect = '/') =
       if (data.success) {
         setSignupFailed(false);
         navigatePath(redirect);
-      }
-      else {
+      } else {
         setSignupFailed(true);
       }
     })
