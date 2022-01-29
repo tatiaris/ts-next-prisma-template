@@ -1,7 +1,26 @@
 /* GENERAL SETTINGS START */
+:root {
+  --default-font-size: 18px;
+  --default-font-family: "Roboto", sans-serif;
+  --default-font-weight: 400;
+  --default-border-radius: 5px;
+  --default-transition-speed: 200ms;
+  --default-padding: 10px;
+}
+.light {
+  --main-bg-color: #FEFCF7;
+  --regular-text-color: #2F1C4C;
+  --heading-text-color: #463263;
+}
+.dark {
+  --main-bg-color: #2F1C4C;
+  --regular-text-color: white;
+  --heading-text-color: #E5BE7D;
+}
 body {
-  background-color: white !important;
+  background-color: var(--main-bg-color) !important;
   margin: 0;
+  font-size: var(--default-font-size);
 }
 h4, h5 {
   margin: 0 !important;
@@ -10,10 +29,9 @@ input[type=text] {
   width: 100%;
   padding: 0 10px;
   line-height: 2.5;
-  border: 0;
-  border-radius: 5px;
-  box-shadow: inset 0px 0px 5px #bebebe, inset 0px 0px 5px #ffffff;
-  transition: 200ms;
+  border: 1px solid #ccc;
+  border-radius: var(--default-border-radius);
+  transition: var(--default-transition-speed);
 }
 input:focus {
   outline: none;
@@ -22,9 +40,8 @@ input[type=password] {
   width: 100%;
   padding: 0 10px;
   line-height: 2.5;
-  border: 0;
+  border: 1px solid #ccc;
   border-radius: 5px;
-  box-shadow: inset 0px 0px 5px #bebebe, inset 0px 0px 5px #ffffff;
   transition: 200ms;
 }
 button, .button {
