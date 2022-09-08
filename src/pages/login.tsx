@@ -13,7 +13,8 @@ const Login = ({ userSession }): React.ReactNode => {
   else {
     return (
       <div style={{ padding: '15px' }}>
-        <StringInput config={{ name: 'username', label: 'Username', type: 'text', placeholder: 'jdoe' }} updateFunc={setUsername} />
+        <StringInput
+          config={{ name: 'username', label: 'Username', type: 'text', placeholder: 'jdoe' }} updateFunc={setUsername} />
         <Spacer />
         <StringInput config={{ name: 'password', label: 'Password', type: 'password', placeholder: '' }} updateFunc={setPassword} />
         {loginFailed && (
