@@ -9,6 +9,7 @@
     "lint": "eslint --fix .",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx}\" --config ./.prettierrc",
     "test": "jest --watch",
+    "precommit": "lint-staged",
     "cypress:open": "cypress open"
   },
   "dependencies": {
@@ -60,7 +61,7 @@
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
       "eslint --fix",
-      "prettier --write"
+      "prettier --write --config ./.prettierrc"
     ]
   }
 }
